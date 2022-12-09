@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liveness.dflivenesslibrary.camera.FixedAspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SurfaceView
+        android:id="@+id/surfaceViewCamera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.liveness.dflivenesslibrary.view.DFLivenessOverlayView
+        android:id="@+id/id_ov_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:overlay_circle_radius="150dp"
+        app:overlay_circle_top="160dp"
+        android:visibility="visible"/>
+
+</com.liveness.dflivenesslibrary.camera.FixedAspectRatioFrameLayout>

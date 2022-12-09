@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <integer name="animation_action_time">500</integer>   
+    <integer name="livenesslibrary_max_time">15</integer>
+</resources>

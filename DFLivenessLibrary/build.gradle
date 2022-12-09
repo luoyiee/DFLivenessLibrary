@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 32
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 32
+    }
+
+    buildTypes {
+        debug {
+//            buildConfigField "String", "HOST_URL", "\"https://cloudapi.pakistan.accuauth.com\""
+//            buildConfigField "String", "API_ID", "\"eb129020d65948c0b3b8efaa337cf7ce\""
+//            buildConfigField "String", "API_SECRET", "\"678cfff61fe3494b8fa142157ead8cfc\""
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField "String", "HOST_URL", "\"https://cloudapi.pakistan.accuauth.com\""
+//            buildConfigField "String", "API_ID", "\"eb129020d65948c0b3b8efaa337cf7ce\""
+//            buildConfigField "String", "API_SECRET", "\"678cfff61fe3494b8fa142157ead8cfc\""
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compileOnly fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    api project(':repo')
+//    implementation 'com.dfsdk.liveness:df-liveness-action-sdk:2.2.1@aar'
+//    implementation 'com.liveness.dflivenesslibrary:df-liveness-action-ui:2.2.2@aar'
+}

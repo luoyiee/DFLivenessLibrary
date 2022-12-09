@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LivenessActionTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <declare-styleable name="CircleTimeView">
+        <attr name="circle_width" format="integer" />
+        <attr name="circle_color" format="string" />
+        <attr name="max_time" format="integer" />
+        <attr name="text_size" format="integer" />
+        <attr name="text_color" format="string" />
+        <attr name="redus_color" format="string" />
+        <attr name="text_redus" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="DFGifView">
+        <attr name="gif" format="reference" />
+        <attr name="paused" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CustomTheme">
+        <attr name="gifViewStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="DFLivenessOverlayView">
+        <attr name="overlay_circle_top" format="dimension" />
+        <attr name="overlay_circle_radius" format="dimension" />
+    </declare-styleable>
+
+</resources>
