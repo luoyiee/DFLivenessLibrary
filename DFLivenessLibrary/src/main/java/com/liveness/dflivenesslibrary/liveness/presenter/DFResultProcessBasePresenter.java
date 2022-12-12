@@ -17,9 +17,9 @@ public abstract class DFResultProcessBasePresenter {
 
     }
 
-    public abstract void dealLivenessResult(byte[] livenessEncryptResult, DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult);
+    public abstract void dealLivenessResult(byte[] livenessEncryptResult, byte[] imageResult, byte[] videoResult);
 
-    protected DFProductResult getDetectResult(byte[] livenessEncryptResult, DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
+    protected DFProductResult getDetectResult(byte[] livenessEncryptResult, byte[] imageResult, byte[] videoResult) {
         DFProductResult result = new DFProductResult();
         if (mReturnImage) {
             result.setLivenessImageResults(imageResult);

@@ -86,7 +86,11 @@ public class DFLivenessBaseActivity extends DFAcitivityBase implements DFLivenes
 
     @Override
     public void saveFinalEncrytFile(byte[] livenessEncryptResult, DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
-        mResultProcessPresenter.dealLivenessResult(livenessEncryptResult, imageResult, videoResult);
+        if (imageResult != null) {
+            for (DFLivenessSDK.DFLivenessImageResult itemImageResult : imageResult) {
+                mResultProcessPresenter.dealLivenessResult(livenessEncryptResult, itemImageResult.image, videoResult);
+            }
+        }
     }
 
     @Override

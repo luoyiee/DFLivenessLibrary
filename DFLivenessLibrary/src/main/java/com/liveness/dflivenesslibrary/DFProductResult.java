@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class DFProductResult {
     private ArrayList<byte[]> mResultImages; // jpeg images
     private byte[] mLivenessEncryptResult;
-    private DFLivenessSDK.DFLivenessImageResult[] mLivenessImageResults;
+    //    private DFLivenessSDK.DFLivenessImageResult[] mLivenessImageResults;
+    private byte[] mLivenessImageResult;
     private byte[] mLivenessVideoResult;
     private boolean mAntiHackPass;
     private String mErrorMessage;
@@ -34,12 +35,17 @@ public class DFProductResult {
         this.mLivenessEncryptResult = livenessResult;
     }
 
-    public DFLivenessSDK.DFLivenessImageResult[] getLivenessImageResults() {
-        return mLivenessImageResults;
+    public byte[] getLivenessImageResults() {
+        return mLivenessImageResult;
     }
 
-    public void setLivenessImageResults(DFLivenessSDK.DFLivenessImageResult[] imageResults) {
-        this.mLivenessImageResults = imageResults;
+//    public void setLivenessImageResults(DFLivenessSDK.DFLivenessImageResult[] imageResults) {
+//        this.mLivenessImageResults = imageResults;
+//    }
+
+
+    public void setLivenessImageResults(byte[] livenessImageResult) {
+        this.mLivenessImageResult = livenessImageResult;
     }
 
     public byte[] getLivenessVideoResult() {
