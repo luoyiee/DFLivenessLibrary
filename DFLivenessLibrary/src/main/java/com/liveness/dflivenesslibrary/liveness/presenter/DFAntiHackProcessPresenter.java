@@ -42,7 +42,7 @@ public class DFAntiHackProcessPresenter extends DFResultProcessBasePresenter {
     }
 
     @Override
-    public void dealLivenessResult(byte[] livenessEncryptResult, DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
+    public void dealLivenessResult(byte[] livenessEncryptResult, byte[] imageResult, byte[] videoResult) {
         showProgressDialog();
         mProductResult = getDetectResult(livenessEncryptResult, imageResult, videoResult);
         initThreadPool();

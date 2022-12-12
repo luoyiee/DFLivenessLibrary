@@ -10,7 +10,7 @@ public class DFCommonResultProcessPresenter extends DFResultProcessBasePresenter
     }
 
     @Override
-    public void dealLivenessResult(byte[] livenessEncryptResult, DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
+    public void dealLivenessResult(byte[] livenessEncryptResult, byte[] imageResult, byte[] videoResult) {
         DFProductResult detectResult = getDetectResult(livenessEncryptResult, imageResult, videoResult);
         if (mResultProcessCallback != null) {
             mResultProcessCallback.returnDFProductResult(detectResult);
