@@ -100,7 +100,7 @@ public class DFLivenessBaseFragment extends DFProductFragmentBase implements Cam
     }
 
     @Override
-    protected void initialize() {
+    public void initialize() {
         mLivenessResultFileProcess = (DFLivenessResultCallback) getActivity();
         mSensorManger = new DFSensorManager(getActivity());
 

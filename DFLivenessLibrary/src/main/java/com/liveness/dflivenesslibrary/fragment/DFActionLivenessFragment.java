@@ -58,7 +58,7 @@ public class DFActionLivenessFragment extends DFLivenessBaseFragment {
     }
 
     @Override
-    protected void initialize() {
+    public void initialize() {
         Bundle bundle = getActivity().getIntent().getExtras();
         if (bundle != null) {
             String motionString = bundle.getString(EXTRA_MOTION_SEQUENCE);

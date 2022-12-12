@@ -26,6 +26,11 @@ public class BiopsyManager {
         this.API_SECRET = apiSecret;
     }
 
+
+    public void initialize() {
+    }
+
+
     public String getHostUrl() {
         return HOST_URL;
     }
@@ -55,5 +60,7 @@ public class BiopsyManager {
         public int getValue() {
             return this.mValue;
         }
+
+
     }
 }
