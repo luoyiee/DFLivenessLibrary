@@ -150,13 +150,11 @@ public class DFLivenessBaseFragment extends DFProductFragmentBase implements Cam
     protected DFLivenessBaseProcess.OnLivenessCallBack mLivenessListener = new DFLivenessBaseProcess.OnLivenessCallBack() {
         @Override
         public void onLivenessDetect(final int value, final int status, byte[] livenessEncryptResult,
-                                     final DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
+                                     final byte[] imageResult, byte[] videoResult) {
             LivenessUtils.logI(TAG, "onLivenessDetect", "value", value);
 
             if (imageResult != null) {
-                for (DFLivenessSDK.DFLivenessImageResult itemImageResult : imageResult) {
-                    onLivenessDetectCallBack(value, status, livenessEncryptResult, itemImageResult.image, videoResult);
-                }
+                onLivenessDetectCallBack(value, status, livenessEncryptResult, imageResult, videoResult);
             }
         }
 

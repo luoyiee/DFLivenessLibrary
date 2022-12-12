@@ -308,12 +308,18 @@ public class DFLivenessBaseProcess implements PreviewCallback {
         return null;
     }
 
-    private DFLivenessSDK.DFLivenessImageResult[] getImageResult() {
+    private byte[] getImageResult() {
         try {
             synchronized (this) {
+                byte[] imageResult = new byte[0];
                 if (mDetector != null) {
                     mDetector.end();
-                    return mDetector.getImageResult();
+                    if (mDetector.getImageResult() != null) {
+                        for (DFLivenessSDK.DFLivenessImageResult itemImageResult : mDetector.getImageResult()) {
+                            imageResult=itemImageResult.image;
+                        }
+                    }
+                    return imageResult;
                 }
             }
         } catch (Exception e) {
@@ -601,7 +607,7 @@ public class DFLivenessBaseProcess implements PreviewCallback {
 
 
         void onLivenessDetect(int value, int status, byte[] livenessEncryptResult,
-                              DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult);
+                              byte[] imageResult, byte[] videoResult);
 
         //        void onFaceDetect(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect);
         void onFaceDetect(int value, boolean hasFace, boolean faceValid);

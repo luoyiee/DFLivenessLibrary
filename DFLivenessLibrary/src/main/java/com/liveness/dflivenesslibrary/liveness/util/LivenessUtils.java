@@ -110,8 +110,9 @@ public class LivenessUtils {
 
     public static void deleteFiles(String folderPath) {
         File dir = new File(folderPath);
-        if (!dir.exists() || !dir.isDirectory() || dir.listFiles() == null)
+        if (!dir.exists() || !dir.isDirectory() || dir.listFiles() == null) {
             return;
+        }
         if (dir.exists() && dir.isDirectory()) {
             File[] files = dir.listFiles();
             if (files != null) {
