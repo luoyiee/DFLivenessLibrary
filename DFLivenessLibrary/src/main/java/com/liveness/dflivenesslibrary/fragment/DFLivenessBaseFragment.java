@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dfsdk.liveness.DFLivenessSDK;
 import com.liveness.dflivenesslibrary.BiopsyManager;
 import com.liveness.dflivenesslibrary.R;
 import com.liveness.dflivenesslibrary.callback.DFLivenessResultCallback;
@@ -193,7 +192,7 @@ public class DFLivenessBaseFragment extends DFProductFragmentBase implements Cam
         setLivenessState(false);
         mAnimFrame.setVisibility(View.VISIBLE);
         if (!isSilent()) {
-            int value = DFLivenessSDK.DFLivenessMotion.NONE.getValue();
+            int value = BiopsyManager.DFLivenessMotion.NONE.getValue();
             onLivenessDetectCallBack(value, 0, null, null, null);
         }
     }
@@ -238,7 +237,7 @@ public class DFLivenessBaseFragment extends DFProductFragmentBase implements Cam
     }
 
     protected void onFaceDetectCallback(int value, boolean hasFace, boolean faceValid) {
-        if (value == DFLivenessSDK.DFLivenessMotion.HOLD_STILL.getValue()) {
+        if (value == BiopsyManager.DFLivenessMotion.HOLD_STILL.getValue()) {
             String hasFaceShow = DFViewShowUtils.booleanTrans(hasFace);
             String faceValidShow = DFViewShowUtils.booleanTrans(faceValid);
             String faceProcessResult = hasFaceShow.concat("_").concat(faceValidShow);
