@@ -14,6 +14,7 @@ public class DFActionLivenessProcess extends DFLivenessBaseProcess {
         super(context);
     }
 
+    @Override
     protected DFLivenessSDK.DFLivenessOutputType getOutputType(Bundle bundle) {
         String output = bundle.getString(DFActionLivenessActivity.OUTTYPE);
         return DFLivenessSDK.DFLivenessOutputType.getOutputTypeByValue(output);
@@ -37,10 +38,12 @@ public class DFActionLivenessProcess extends DFLivenessBaseProcess {
         return outputType.getValue() | complexity.getValue();
     }
 
+    @Override
     protected boolean isHoldStill(DFLivenessSDK.DFLivenessMotion motion) {
         return motion == DFLivenessSDK.DFLivenessMotion.HOLD_STILL;
     }
 
+    @Override
     protected DFLivenessSDK.DFLivenessMotion[] getMotionList() {
         return LivenessUtils.getMctionOrder(mIntent
                 .getStringExtra(DFActionLivenessActivity.EXTRA_MOTION_SEQUENCE));

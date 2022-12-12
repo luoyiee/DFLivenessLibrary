@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dfsdk.liveness.DFLivenessSDK;
+import com.liveness.dflivenesslibrary.BiopsyManager;
 import com.liveness.dflivenesslibrary.R;
 import com.liveness.dflivenesslibrary.callback.DFLivenessResultCallback;
 import com.liveness.dflivenesslibrary.fragment.model.DFLivenessOverlayModel;
@@ -149,15 +150,19 @@ public class DFLivenessBaseFragment extends DFProductFragmentBase implements Cam
     protected DFLivenessBaseProcess.OnLivenessCallBack mLivenessListener = new DFLivenessBaseProcess.OnLivenessCallBack() {
         @Override
         public void onLivenessDetect(final int value, final int status, byte[] livenessEncryptResult,
-                                     DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
+                                     final DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
             LivenessUtils.logI(TAG, "onLivenessDetect", "value", value);
-            onLivenessDetectCallBack(value, status, livenessEncryptResult, imageResult, videoResult);
+
+            if (imageResult != null) {
+                for (DFLivenessSDK.DFLivenessImageResult itemImageResult : imageResult) {
+                    onLivenessDetectCallBack(value, status, livenessEncryptResult, itemImageResult.image, videoResult);
+                }
+            }
         }
 
         @Override
-        public void onFaceDetect(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect) {
-            LivenessUtils.logI(TAG, "onLivenessDetect", "value", value, "hasFace", hasFace, "faceValid", faceValid);
-            onFaceDetectCallback(value, hasFace, faceValid, rect);
+        public void onFaceDetect(int value, boolean hasFace, boolean faceValid) {
+
         }
 
         @Override
@@ -230,11 +235,11 @@ public class DFLivenessBaseFragment extends DFProductFragmentBase implements Cam
     }
 
     protected void onLivenessDetectCallBack(final int value, final int status, final byte[] livenessEncryptResult,
-                                            final DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult) {
+                                            final byte[] imageResult, byte[] videoResult) {
 
     }
 
-    protected void onFaceDetectCallback(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect) {
+    protected void onFaceDetectCallback(int value, boolean hasFace, boolean faceValid) {
         if (value == DFLivenessSDK.DFLivenessMotion.HOLD_STILL.getValue()) {
             String hasFaceShow = DFViewShowUtils.booleanTrans(hasFace);
             String faceValidShow = DFViewShowUtils.booleanTrans(faceValid);

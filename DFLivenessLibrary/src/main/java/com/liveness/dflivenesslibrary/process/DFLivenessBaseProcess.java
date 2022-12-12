@@ -13,6 +13,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.dfsdk.liveness.DFLivenessSDK;
+import com.liveness.dflivenesslibrary.BiopsyManager;
 import com.liveness.dflivenesslibrary.liveness.DFLivenessBaseActivity;
 import com.liveness.dflivenesslibrary.liveness.util.Constants;
 import com.liveness.dflivenesslibrary.liveness.util.LivenessUtils;
@@ -78,7 +79,8 @@ public class DFLivenessBaseProcess implements PreviewCallback {
                     DFLivenessSDK.DFRect faceRect = status.getFaceRect();
                     if (mListener != null) {
                         int currentMotion = msg.arg1;
-                        mListener.onFaceDetect(mMotionList[currentMotion].getValue(), status.isHasFace(), status.isFaceValid(), faceRect);
+//                        mListener.onFaceDetect(mMotionList[currentMotion].getValue(), status.isHasFace(), status.isFaceValid(), faceRect);
+                        mListener.onFaceDetect(mMotionList[currentMotion].getValue(), status.isHasFace(), status.isFaceValid());
                     }
                     break;
                 case DETECTION_SUCCESS:
@@ -594,10 +596,17 @@ public class DFLivenessBaseProcess implements PreviewCallback {
     }
 
     public interface OnLivenessCallBack {
+//        void onLivenessDetect(int value, int status, byte[] livenessEncryptResult,
+//                              DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult);
+
+
         void onLivenessDetect(int value, int status, byte[] livenessEncryptResult,
                               DFLivenessSDK.DFLivenessImageResult[] imageResult, byte[] videoResult);
 
-        void onFaceDetect(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect);
+        //        void onFaceDetect(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect);
+        void onFaceDetect(int value, boolean hasFace, boolean faceValid);
+
+//        void onFaceDetect(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect);
 
         RectF getDetectRegion();
 

@@ -12,6 +12,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.dfsdk.liveness.DFLivenessSDK;
+import com.liveness.dflivenesslibrary.BiopsyManager;
 import com.liveness.dflivenesslibrary.DFAcitivityBase;
 import com.liveness.dflivenesslibrary.R;
 import com.liveness.dflivenesslibrary.fragment.model.DFLivenessOverlayModel;
@@ -194,23 +195,23 @@ public class DFActionLivenessFragment extends DFLivenessBaseFragment {
 
     @Override
     protected void onLivenessDetectCallBack(final int value, final int status, final byte[] livenessEncryptResult,
-                                            final DFLivenessSDK.DFLivenessImageResult[] imageResult, final byte[] videoResult) {
+                                            final byte[] imageResult, final byte[] videoResult) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (value == DFLivenessSDK.DFLivenessMotion.BLINK.getValue()) {
+                if (value == BiopsyManager.DFLivenessMotion.BLINK.getValue()) {
                     updateUi(R.raw.raw_liveness_detect_blink, status);
                     startCountdown();
-                } else if (value == DFLivenessSDK.DFLivenessMotion.MOUTH.getValue()) {
+                } else if (value == BiopsyManager.DFLivenessMotion.MOUTH.getValue()) {
                     updateUi(R.raw.raw_liveness_detect_mouth, status);
                     startCountdown();
-                } else if (value == DFLivenessSDK.DFLivenessMotion.NOD.getValue()) {
+                } else if (value == BiopsyManager.DFLivenessMotion.NOD.getValue()) {
                     updateUi(R.raw.raw_liveness_detect_nod, status);
                     startCountdown();
-                } else if (value == DFLivenessSDK.DFLivenessMotion.YAW.getValue()) {
+                } else if (value == BiopsyManager.DFLivenessMotion.YAW.getValue()) {
                     updateUi(R.raw.raw_liveness_detect_yaw, status);
                     startCountdown();
-                } else if (value == DFLivenessSDK.DFLivenessMotion.HOLD_STILL.getValue()) {
+                } else if (value == BiopsyManager.DFLivenessMotion.HOLD_STILL.getValue()) {
                     updateUi(R.raw.raw_liveness_detect_holdstill, status);
                 } else if (value == Constants.LIVENESS_SUCCESS) {
                     mIsStart = false;
@@ -220,17 +221,14 @@ public class DFActionLivenessFragment extends DFLivenessBaseFragment {
                     stopGuideAudio();
                     stopCountDown();
                     if (imageResult != null) {
-                        for (DFLivenessSDK.DFLivenessImageResult itemImageResult : imageResult) {
-                            byte[] image = itemImageResult.image;
-                            Bitmap cropBitmap;
+                        Bitmap cropBitmap;
                             BitmapFactory.Options options = new BitmapFactory.Options();
                             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                            cropBitmap = BitmapFactory.decodeByteArray(image, 0, image.length, options);
+                            cropBitmap = BitmapFactory.decodeByteArray(imageResult, 0, imageResult.length, options);
                             Bitmap bmp = DFBitmapUtils.cropResultBitmap(cropBitmap, mCameraBase.getPreviewWidth(), mCameraBase.getPreviewHeight(), mCameraBase.getScanRatio());
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
                             InputStream isBm = new ByteArrayInputStream(baos.toByteArray());
-                        }
                     }
 //                    mLivenessResultFileProcess.saveFinalEncrytFile(livenessEncryptResult, imageResult, videoResult);
 //                    mLivenessResultFileProcess.saveFile(livenessEncryptResult);
@@ -262,7 +260,7 @@ public class DFActionLivenessFragment extends DFLivenessBaseFragment {
     }
 
     @Override
-    protected void onFaceDetectCallback(int value, boolean hasFace, boolean faceValid, DFLivenessSDK.DFRect rect) {
+    protected void onFaceDetectCallback(int value, boolean hasFace, boolean faceValid) {
 //        if (value == DFLivenessSDK.DFLivenessMotion.HOLD_STILL.getValue()) {
         String action = String.valueOf(value);
         String hasFaceShow = DFViewShowUtils.booleanTrans(hasFace);

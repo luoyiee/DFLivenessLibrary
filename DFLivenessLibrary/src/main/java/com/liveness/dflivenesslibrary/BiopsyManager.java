@@ -2,6 +2,8 @@ package com.liveness.dflivenesslibrary;
 
 import android.app.Application;
 
+import java.io.Serializable;
+
 /**
  * @author 学客
  */
@@ -34,5 +36,24 @@ public class BiopsyManager {
 
     public String getApiSecret() {
         return API_SECRET;
+    }
+
+    public static enum DFLivenessMotion {
+        NONE(-1),
+        BLINK(0),
+        MOUTH(1),
+        YAW(2),
+        NOD(3),
+        HOLD_STILL(4);
+
+        private int mValue;
+
+        private DFLivenessMotion(int value) {
+            this.mValue = value;
+        }
+
+        public int getValue() {
+            return this.mValue;
+        }
     }
 }
