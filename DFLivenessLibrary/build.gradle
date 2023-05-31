@@ -34,7 +34,8 @@ dependencies {
     compileOnly fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.code.gson:gson:2.9.0'
-    compileOnly files('libs/DFLivenessSDK.aar')
+    implementation files('libs/DFLivenessSDK.aar')
+
 //    implementation project(':repo')
 //    implementation 'com.dfsdk.liveness:df-liveness-action-sdk:2.2.1@aar'
 //    implementation 'com.liveness.dflivenesslibrary:df-liveness-action-ui:2.2.2@aar'
